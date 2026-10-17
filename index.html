@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rollercoaster Player</title>
+
+<style>
+
+html,body{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    background:#000;
+    overflow:hidden;
+    font-family:Arial;
+}
+
+/* Zwarte rand container */
+#frame{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:95vw;
+    height:95vh;
+    background:#000;
+    border:18px solid #000;      /* Zwarte rand */
+    border-radius:22px;          /* Mooie afgeronde hoeken */
+    overflow:hidden;
+}
+
+/* Startscherm */
+#startScreen{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Thumbnail */
+#thumbnail{
+    position:absolute;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:0.85;
+}
+
+/* Rode aan-knop */
+#powerButton{
+    position:relative;
+    width:140px;
+    height:140px;
+    background:red;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    box-shadow:0 0 35px rgba(255,0,0,0.8);
+    z-index:10;
+}
+
+#powerButton img{
+    width:60%;
+}
+
+/* Player */
+#playerContainer{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:none;
+}
+
+#player{
+    width:100%;
+    height:100%;
+    border:none;
+}
+
+/* Back-knop */
+#back{
+    position:absolute;
+    bottom:20px;
+    left:20px;
+    z-index:999;
+    padding:10px 20px;
+    background:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    display:none;
+}
+
+</style>
+
+</head>
+<body>
+
+<div id="frame">
+
+    <!-- Startscherm -->
+    <div id="startScreen">
+
+        <!-- Thumbnail -->
+        <img id="thumbnail" src="hallow01.jpg">
+
+        <!-- Rode knop -->
+        <div id="powerButton" onclick="startVideo()">
+            <img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSJ3aGl0ZSIgdmlld0JveD0iMCAwIDI0IDI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0xMiAyLjV2MTVNMTEgMjEuNWMtNS40IDAtOS43LTQuMy05LjctOS43IDAtNS40IDQuMy05LjcgOS43LTkuNyA1LjQgMCA5LjcgNC4zIDkuNyA5LjcgMCA1LjQtNC4zIDkuNy05LjcgOS43eiIvPjwvc3ZnPg==" />
+        </div>
+
+    </div>
+
+    <!-- Videospeler -->
+    <div id="playerContainer">
+        <iframe id="player" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        <button id="back" onclick="goBack()">← Back</button>
+    </div>
+
+</div>
+
+<script>
+
+function startVideo(){
+    document.getElementById("startScreen").style.display="none";
+    document.getElementById("playerContainer").style.display="block";
+    document.getElementById("back").style.display="block";
+
+    document.getElementById("player").src =
+        "https://www.youtube.com/embed/HdT9OQlxW9E?autoplay=1&controls=0&rel=0&modestbranding=1";
+}
+
+function goBack(){
+    document.getElementById("player").src = "";
+    document.getElementById("playerContainer").style.display="none";
+    document.getElementById("back").style.display="none";
+    document.getElementById("startScreen").style.display="flex";
+}
+
+</script>
+
+</body>
+</html>
